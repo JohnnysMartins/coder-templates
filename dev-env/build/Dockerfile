@@ -56,8 +56,4 @@ RUN chown -R coder:coder /home/coder
 # Switch back to coder user
 USER coder
 
-# Setup a default tmux configuration
-RUN echo "set -g mouse on" > ~/.tmux.conf && \
-    echo "set -g default-terminal 'screen-256color'" >> ~/.tmux.conf
-
 CMD ["/bin/bash"]

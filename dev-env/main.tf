@@ -38,6 +38,14 @@ resource "coder_agent" "main" {
     else
       echo "SSH key already exists"
     fi
+
+    # Install the latest code-server.
+    curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone --prefix=/tmp/code-server
+
+    # Start code-server in the background.
+    /tmp/code-server/bin/code-server --auth none --port 13337 >/tmp/code-server.log 2>&1 &
+
+
     
     # start tmux session
     tmux new-session -d -s dev || true

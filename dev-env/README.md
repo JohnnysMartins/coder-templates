@@ -6,6 +6,7 @@ This template creates a development environment based on Arch Linux with common 
 
 - Arch Linux base
 - User: coder (with sudo privileges)
+- SSH key generation
 - Development tools:
   - NVM with latest LTS Node.js
   - Tmux
@@ -15,24 +16,49 @@ This template creates a development environment based on Arch Linux with common 
   - Autojump
   - Yay (AUR helper)
 
-## Getting Started
+## How to Push This Template to Coder
 
-1. Build the Docker image:
+### Step 1: Build the Docker image
+
+First, build the Docker image defined in the Dockerfile:
+
 ```bash
-cd build
+cd /Users/johnnysmartins/workarea/coder-templates/dev-env/build
 docker build -t dev-env:latest .
 ```
 
-2. Create a workspace using this template in Coder:
+### Step 2: Create the Coder template
+
+Navigate to the template directory and create a new template:
+
 ```bash
+cd /Users/johnnysmartins/workarea/coder-templates/dev-env
 coder templates create
 ```
 
-3. Connect to your workspace and start developing!
+Follow the interactive prompts:
+- Enter a name for your template (e.g., "arch-dev-env")
+- Confirm the creation
 
-## Usage Tips
+### Step 3: Create a workspace using your template
 
-- The environment starts with a tmux session called 'dev'
-- Neofetch runs on startup to show system information
-- Node.js is installed via NVM for easy version management
-- Autojump is configured for quick directory navigation
+```bash
+coder create --template=arch-dev-env my-workspace
+```
+
+Or use the Coder dashboard to create a new workspace with your template.
+
+## Template Development and Updates
+
+To update the template after making changes:
+
+```bash
+# After modifying the template files
+coder templates push arch-dev-env
+```
+
+To delete the template:
+
+```bash
+coder templates delete arch-dev-env
+```
